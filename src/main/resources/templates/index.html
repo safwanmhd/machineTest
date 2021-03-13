@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title of application</title>
+</head>
+<body>
+<div align="center">
+    <br>
+    <form method="post" action="search">
+        Client Id : <input type="text" name="clientId"/>
+        SchemeId: <input type="text" name="schemeId">
+        <input type="submit" value="Submit">
+    </form>
+    <br></br>
+    <b><a href="new">Add new data</a></b>
+    <br></br>
+
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>ClientId</th>
+            <th>SchemeId</th>
+            <th>RemitterId</th>
+            <th>Address</th>
+            <th>NationalId</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ups : ${listUps}">
+            <td><a th:href="@{'/view/' + ${ups.id}}"><div th:text="${ups.id}"></div></a></td>
+            <td th:text="${ups.clientId}">clientId</td>
+            <td th:text="${ups.schemeId}">schemeId</td>
+            <td th:text="${ups.remitterId}">remitterId</td>
+            <td th:text="${ups.address}">address</td>
+            <td th:text="${ups.nationalId}">nationalId</td>
+
+            <td>
+                <a th:href="@{'/edit/' + ${ups.id}}">Edit</a>
+                &nbsp;&nbsp;&nbsp;
+                <a th:href="@{'/delete/' + ${ups.id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
